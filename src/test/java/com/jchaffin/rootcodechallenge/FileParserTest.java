@@ -43,4 +43,15 @@ public class FileParserTest {
 		assertEquals(2, testParser.getDrivers().size());
 	}
 
+	@Test
+	public void registerDriversDoesNotCreateAndSaveDriverWithoutName() throws IOException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Driver Bob");
+		writer.println("Driver");
+		writer.close();
+		testParser.registerDrivers(testFile);
+		assertEquals(1, testParser.getDrivers().size());
+	}
+
 }

@@ -20,7 +20,7 @@ public class FileParser {
 			Scanner words = new Scanner(lines.nextLine());
 			while (words.hasNext()) {
 				String command = words.next();
-				if (command.equals("Driver")) {
+				if (command.equals("Driver") && words.hasNext()) {
 					String name = words.next();
 					Driver newDriver = new Driver(name);
 					drivers.add(newDriver);
