@@ -22,6 +22,7 @@ public class FileParserTest {
 		testParser = new FileParser();
 	}
 
+	// Tests for registerDrivers method
 	@Test
 	public void registerDriversCreatesAndSavesDriverObjectWhenLineStartsWithDriver() throws IOException {
 		File testFile = folder.newFile("test.txt");
@@ -65,6 +66,17 @@ public class FileParserTest {
 		writer.close();
 		testParser.registerDrivers(testFile);
 		assertEquals(3, testParser.getDrivers().size());
+	}
+
+	// Tests for assignTrips method
+	@Test
+	public void createTripsCreatesTripWhenLineStartsWithTrip() throws IOException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.close();
+		testParser.createTrips(testFile);
+		assertEquals(1, testParser.createTrips(testFile).size());
 	}
 
 }

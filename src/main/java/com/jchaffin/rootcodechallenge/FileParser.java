@@ -31,6 +31,33 @@ public class FileParser {
 		lines.close();
 	}
 
+	public ArrayList<Trip> createTrips(File file) {
+		ArrayList<Trip> trips = new ArrayList<Trip>();
+		;
+		Scanner lines = null;
+		try {
+			lines = new Scanner(file);
+		} catch (FileNotFoundException ex) {
+			System.out.printf("ERROR: %s\n", ex);
+		}
+		while (lines.hasNextLine()) {
+			Scanner words = new Scanner(lines.nextLine());
+			while (words.hasNext()) {
+				String command = words.next();
+				if (command.equals("Trip") && words.hasNext()) {
+					String name = words.next();
+					String startTime = words.next();
+					String stopTime = words.next();
+					double milesDriven = words.nextDouble();
+					Trip newTrip = new Trip(name, startTime, stopTime, milesDriven);
+					trips.add(newTrip);
+				}
+			}
+			words.close();
+		}
+		return trips;
+	}
+
 	public void addDriver(Driver driver) {
 		drivers.add(driver);
 	}
