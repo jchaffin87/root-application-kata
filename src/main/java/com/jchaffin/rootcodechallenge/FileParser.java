@@ -9,7 +9,7 @@ public class FileParser {
 
 	private ArrayList<Driver> drivers = new ArrayList<Driver>();
 
-	public void registerDrivers(File file) {
+	protected void registerDrivers(File file) {
 		Scanner lines = null;
 		try {
 			lines = new Scanner(file);
@@ -31,7 +31,7 @@ public class FileParser {
 		lines.close();
 	}
 
-	public void assignTrips(File file) {
+	protected void assignTrips(File file) {
 		ArrayList<Trip> createdTrips = createTrips(file);
 		for (Trip trip : createdTrips) {
 			for (Driver driver : drivers) {
@@ -42,7 +42,7 @@ public class FileParser {
 		}
 	}
 
-	ArrayList<Trip> createTrips(File file) {
+	protected ArrayList<Trip> createTrips(File file) {
 		ArrayList<Trip> trips = new ArrayList<Trip>();
 		;
 		Scanner lines = null;

@@ -115,4 +115,34 @@ public class FileParserTest {
 		assertEquals(1, testParser.getDrivers().get(0).getTrips().size());
 	}
 
+	@Test
+	public void assignTripsAddsMultipleTripsToDriversTripsArray() throws IOException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Driver Bob");
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.close();
+		testParser.registerDrivers(testFile);
+		testParser.assignTrips(testFile);
+		assertEquals(2, testParser.getDrivers().get(0).getTrips().size());
+	}
+
+	@Test
+	public void assignTripsAddsMultipleTripsToMultipleDriversTripsArray() throws IOException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Driver Bob");
+		writer.println("Driver Bill");
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.println("Trip Bill 07:15 07:45 17.3");
+		writer.println("Trip Bill 07:15 07:45 17.3");
+		writer.close();
+		testParser.registerDrivers(testFile);
+		testParser.assignTrips(testFile);
+		assertEquals(2, testParser.getDrivers().get(0).getTrips().size());
+		assertEquals(2, testParser.getDrivers().get(1).getTrips().size());
+	}
+
 }
