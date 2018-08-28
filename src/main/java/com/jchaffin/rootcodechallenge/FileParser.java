@@ -9,6 +9,11 @@ public class FileParser {
 
 	private ArrayList<Driver> drivers = new ArrayList<Driver>();
 
+	protected void parseFile(File file) {
+		registerDrivers(file);
+		assignTrips(file);
+	}
+
 	protected void registerDrivers(File file) {
 		Scanner lines = null;
 		try {
@@ -69,7 +74,7 @@ public class FileParser {
 		return trips;
 	}
 
-	public ArrayList<Driver> getDrivers() {
+	protected ArrayList<Driver> getDriverData() {
 		return drivers;
 	}
 

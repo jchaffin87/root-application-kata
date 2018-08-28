@@ -30,7 +30,7 @@ public class FileParserTest {
 		writer.println("Driver Bob");
 		writer.close();
 		testParser.registerDrivers(testFile);
-		assertEquals(1, testParser.getDrivers().size());
+		assertEquals(1, testParser.getDriverData().size());
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class FileParserTest {
 		writer.println("Driver Bill");
 		writer.close();
 		testParser.registerDrivers(testFile);
-		assertEquals(2, testParser.getDrivers().size());
+		assertEquals(2, testParser.getDriverData().size());
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class FileParserTest {
 		writer.println("Driver");
 		writer.close();
 		testParser.registerDrivers(testFile);
-		assertEquals(1, testParser.getDrivers().size());
+		assertEquals(1, testParser.getDriverData().size());
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class FileParserTest {
 		writer.println("Driver Bilbo");
 		writer.close();
 		testParser.registerDrivers(testFile);
-		assertEquals(3, testParser.getDrivers().size());
+		assertEquals(3, testParser.getDriverData().size());
 	}
 
 	// Tests for assignTrips method
@@ -112,7 +112,7 @@ public class FileParserTest {
 		writer.close();
 		testParser.registerDrivers(testFile);
 		testParser.assignTrips(testFile);
-		assertEquals(1, testParser.getDrivers().get(0).getTrips().size());
+		assertEquals(1, testParser.getDriverData().get(0).getTrips().size());
 	}
 
 	@Test
@@ -125,7 +125,7 @@ public class FileParserTest {
 		writer.close();
 		testParser.registerDrivers(testFile);
 		testParser.assignTrips(testFile);
-		assertEquals(2, testParser.getDrivers().get(0).getTrips().size());
+		assertEquals(2, testParser.getDriverData().get(0).getTrips().size());
 	}
 
 	@Test
@@ -141,8 +141,8 @@ public class FileParserTest {
 		writer.close();
 		testParser.registerDrivers(testFile);
 		testParser.assignTrips(testFile);
-		assertEquals(2, testParser.getDrivers().get(0).getTrips().size());
-		assertEquals(2, testParser.getDrivers().get(1).getTrips().size());
+		assertEquals(2, testParser.getDriverData().get(0).getTrips().size());
+		assertEquals(2, testParser.getDriverData().get(1).getTrips().size());
 	}
 
 }
