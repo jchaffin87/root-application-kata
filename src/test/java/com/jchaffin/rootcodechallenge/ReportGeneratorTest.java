@@ -55,4 +55,17 @@ public class ReportGeneratorTest {
 		assertEquals("Bob: 30 miles @ 30 mph", outContent.toString().trim());
 	}
 
+	@Test
+	public void generateReportPrintsCorrectOutputForFileWithTwoDriversTrips() throws IOException, ParseException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Driver Bob");
+		writer.println("Trip Bob 07:15 08:15 30");
+		writer.println("Driver Bill");
+		writer.println("Trip Bill 07:15 08:15 60");
+		writer.close();
+		testGenerator.generateReport(testFile);
+		assertEquals("Bob: 30 miles @ 30 mph\r\n" + "Bill: 60 miles @ 60 mph", outContent.toString().trim());
+	}
+
 }
