@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Driver {
 
 	private String name;
-	private int totalDistanceDriven;
-	private int averageSpeed;
+	private int totalDistanceDriven = 0;
+	private int averageSpeed = 0;
 
 	private ArrayList<Trip> trips = new ArrayList<Trip>();
 
