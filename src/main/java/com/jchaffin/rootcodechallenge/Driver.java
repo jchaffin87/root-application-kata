@@ -27,6 +27,10 @@ public class Driver {
 	}
 
 	public int getTotalDistanceDriven() {
+		for (Trip trip : trips) {
+			int distance = (int) Math.round(trip.getDistance());
+			totalDistanceDriven += distance;
+		}
 		return totalDistanceDriven;
 	}
 
