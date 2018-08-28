@@ -2,6 +2,7 @@ package com.jchaffin.rootcodechallenge;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class FileParser {
 
 	private ArrayList<Driver> drivers = new ArrayList<Driver>();
 
-	protected void parseFile(File file) {
+	protected void parseFile(File file) throws ParseException {
 		registerDrivers(file);
 		assignTrips(file);
 	}
@@ -36,11 +37,12 @@ public class FileParser {
 		lines.close();
 	}
 
-	protected void assignTrips(File file) {
+	protected void assignTrips(File file) throws ParseException {
 		ArrayList<Trip> createdTrips = createTrips(file);
 		for (Trip trip : createdTrips) {
 			for (Driver driver : drivers) {
-				if (trip.getDriverName().equals(driver.getName())) {
+				double minSpeed = 5;
+				if (trip.getDriverName().equals(driver.getName()) && !(trip.getSpeed() < minSpeed)) {
 					driver.addTrip(trip);
 				}
 			}

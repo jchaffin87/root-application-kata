@@ -1,5 +1,6 @@
 package com.jchaffin.rootcodechallenge;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Driver {
@@ -30,13 +31,13 @@ public class Driver {
 		return totalDistanceDriven;
 	}
 
-	public int getAverageSpeed() {
-		ArrayList<Integer> speeds = new ArrayList<>();
+	public int getAverageSpeed() throws ParseException {
+		ArrayList<Double> speeds = new ArrayList<>();
 		for (Trip trip : trips) {
 			speeds.add(trip.getSpeed());
 		}
 		int speedSum = 0;
-		for (Integer speed : speeds) {
+		for (Double speed : speeds) {
 			speedSum += speed;
 		}
 		averageSpeed = speedSum / trips.size();
