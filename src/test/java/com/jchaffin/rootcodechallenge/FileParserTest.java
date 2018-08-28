@@ -102,4 +102,17 @@ public class FileParserTest {
 		assertEquals(2, testParser.createTrips(testFile).size());
 	}
 
+	// Tests for assignTrips method
+	@Test
+	public void assignTripsAddsTripToDriversTripsArray() throws IOException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Driver Bob");
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.close();
+		testParser.registerDrivers(testFile);
+		testParser.assignTrips(testFile);
+		assertEquals(1, testParser.getDrivers().get(0).getTrips().size());
+	}
+
 }

@@ -31,7 +31,18 @@ public class FileParser {
 		lines.close();
 	}
 
-	public ArrayList<Trip> createTrips(File file) {
+	public void assignTrips(File file) {
+		ArrayList<Trip> createdTrips = createTrips(file);
+		for (Trip trip : createdTrips) {
+			for (Driver driver : drivers) {
+				if (trip.getDriverName().equals(driver.getName())) {
+					driver.addTrip(trip);
+				}
+			}
+		}
+	}
+
+	ArrayList<Trip> createTrips(File file) {
 		ArrayList<Trip> trips = new ArrayList<Trip>();
 		;
 		Scanner lines = null;
@@ -56,10 +67,6 @@ public class FileParser {
 			words.close();
 		}
 		return trips;
-	}
-
-	public void addDriver(Driver driver) {
-		drivers.add(driver);
 	}
 
 	public ArrayList<Driver> getDrivers() {
