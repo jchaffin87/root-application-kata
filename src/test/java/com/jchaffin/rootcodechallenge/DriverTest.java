@@ -14,6 +14,7 @@ public class DriverTest {
 		testDriver = new Driver("Test");
 	}
 
+	// Tests for getTotalMilesDriven method
 	@Test
 	public void getTotalMilesDrivenReturnsDistanceOfOneTripInDriversTripsArrayAsInt() {
 		Trip testTrip = new Trip("Test", null, null, 10.1);
@@ -33,6 +34,23 @@ public class DriverTest {
 		int tripDistance2 = (int) Math.round(testTrip2.getDistance());
 		int tripDistance3 = (int) Math.round(testTrip3.getDistance());
 		assertEquals(tripDistance1 + tripDistance2 + tripDistance3, testDriver.getTotalDistanceDriven());
+	}
+
+	// Tests for getAverageSpeed
+	@Test
+	public void getAverageSpeedReturnsSpeedOfTripInDriversTripsArray() {
+		Trip testTrip = new Trip("Test", "07:15", "08:15", 60.5);
+		testDriver.addTrip(testTrip);
+		assertEquals(testTrip.getSpeed(), testDriver.getAverageSpeed());
+	}
+
+	@Test
+	public void getAverageSpeedReturnsAverageSpeedOfTripsInDriversTripsArray() {
+		Trip testTrip = new Trip("Test", "07:15", "08:15", 60.5);
+		testDriver.addTrip(testTrip);
+		Trip testTrip2 = new Trip("Test", "07:15", "08:15", 30);
+		testDriver.addTrip(testTrip2);
+		assertEquals((testTrip.getSpeed() + testTrip2.getSpeed()) / 2, testDriver.getAverageSpeed());
 	}
 
 }

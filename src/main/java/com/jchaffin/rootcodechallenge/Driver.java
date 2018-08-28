@@ -22,10 +22,6 @@ public class Driver {
 		return trips;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public int getTotalDistanceDriven() {
 		for (Trip trip : trips) {
 			int distance = (int) Math.round(trip.getDistance());
@@ -35,7 +31,19 @@ public class Driver {
 	}
 
 	public int getAverageSpeed() {
+		ArrayList<Integer> speeds = new ArrayList<>();
+		for (Trip trip : trips) {
+			speeds.add(trip.getSpeed());
+		}
+		int speedSum = 0;
+		for (Integer speed : speeds) {
+			speedSum += speed;
+		}
+		averageSpeed = speedSum / trips.size();
 		return averageSpeed;
 	}
 
+	public String getName() {
+		return name;
+	}
 }
