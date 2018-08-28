@@ -34,7 +34,7 @@ public class FileParserTest {
 	}
 
 	@Test
-	public void registerDriversCreatesAndSavesMultipleDriverObjectsWhenLineStartsWithDriver() throws IOException {
+	public void registerDriversCreatesAndSavesMultipleDriverObjectsWhenLinesStartWithDriver() throws IOException {
 		File testFile = folder.newFile("test.txt");
 		PrintWriter writer = new PrintWriter(testFile);
 		writer.println("Driver Bob");
@@ -77,6 +77,29 @@ public class FileParserTest {
 		writer.close();
 		testParser.createTrips(testFile);
 		assertEquals(1, testParser.createTrips(testFile).size());
+	}
+
+	@Test
+	public void createTripsCreatesMultipleTripsWhenLinesStartWithTrip() throws IOException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.close();
+		testParser.createTrips(testFile);
+		assertEquals(2, testParser.createTrips(testFile).size());
+	}
+
+	@Test
+	public void createTripsSkipsLinesWithoutTripInformation() throws IOException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.println("Trip");
+		writer.println("Trip Bob 07:15 07:45 17.3");
+		writer.close();
+		testParser.createTrips(testFile);
+		assertEquals(2, testParser.createTrips(testFile).size());
 	}
 
 }
