@@ -154,9 +154,26 @@ public class FileParserTest {
 		writer.println("Driver Bob");
 		writer.println("Driver Bill");
 		writer.println("Trip Bob 07:15 08:15 17.3");
-		writer.println("Trip Bob 07:15 08:15 4");
+		writer.println("Trip Bob 07:15 08:15 4.9");
 		writer.println("Trip Bill 07:15 08:15 17.3");
-		writer.println("Trip Bill 07:15 08:15 4");
+		writer.println("Trip Bill 07:15 08:15 4.9");
+		writer.close();
+		testParser.registerDrivers(testFile);
+		testParser.assignTrips(testFile);
+		assertEquals(1, testParser.getDriverData().get(0).getTrips().size());
+		assertEquals(1, testParser.getDriverData().get(1).getTrips().size());
+	}
+
+	@Test
+	public void assignTripsDiscardsTripsWithSpeedOfMoreThanOneHundred() throws IOException, ParseException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Driver Bob");
+		writer.println("Driver Bill");
+		writer.println("Trip Bob 07:15 08:15 17.3");
+		writer.println("Trip Bob 07:15 08:15 100.1");
+		writer.println("Trip Bill 07:15 08:15 17.3");
+		writer.println("Trip Bill 07:15 08:15 100.1");
 		writer.close();
 		testParser.registerDrivers(testFile);
 		testParser.assignTrips(testFile);

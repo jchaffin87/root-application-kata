@@ -42,7 +42,9 @@ public class FileParser {
 		for (Trip trip : createdTrips) {
 			for (Driver driver : drivers) {
 				double minSpeed = 5;
-				if (trip.getDriverName().equals(driver.getName()) && !(trip.getSpeed() < minSpeed)) {
+				double maxSpeed = 100;
+				if (trip.getDriverName().equals(driver.getName()) && !(trip.getSpeed() < minSpeed)
+						&& !(trip.getSpeed() > maxSpeed)) {
 					driver.addTrip(trip);
 				}
 			}
