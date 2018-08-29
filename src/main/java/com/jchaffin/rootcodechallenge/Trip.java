@@ -9,32 +9,31 @@ public class Trip {
 	private String startTime;
 	private String stopTime;
 	private double distance;
-//	private int speed;
 
-	public Trip(String driverName, String startTime, String stopTime, double distance) {
+	protected Trip(String driverName, String startTime, String stopTime, double distance) {
 		this.driverName = driverName;
 		this.startTime = startTime;
 		this.stopTime = stopTime;
 		this.distance = distance;
 	}
 
-	public String getDriverName() {
+	protected String getDriverName() {
 		return driverName;
 	}
 
-	public String getStartTime() {
+	protected String getStartTime() {
 		return startTime;
 	}
 
-	public String getStopTime() {
+	protected String getStopTime() {
 		return stopTime;
 	}
 
-	public double getDistance() {
+	protected double getDistance() {
 		return distance;
 	}
 
-	public double getSpeed() throws ParseException {
+	protected double getSpeed() throws ParseException {
 		LocalTime start = LocalTime.parse(startTime);
 		LocalTime stop = LocalTime.parse(stopTime);
 		long timeMin = start.until(stop, ChronoUnit.MINUTES);

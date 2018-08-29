@@ -8,7 +8,7 @@ public class ReportGenerator {
 
 	FileParser parser = new FileParser();
 
-	public void generateReport(File file) throws ParseException {
+	protected void generateReport(File file) throws ParseException {
 		parser.parseFile(file);
 		ArrayList<Driver> driverData = parser.getDriverData();
 		for (Driver driver : driverData) {

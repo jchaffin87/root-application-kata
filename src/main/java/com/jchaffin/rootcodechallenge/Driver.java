@@ -11,19 +11,23 @@ public class Driver {
 
 	private ArrayList<Trip> trips = new ArrayList<Trip>();
 
-	public Driver(String name) {
+	protected Driver(String name) {
 		this.name = name;
 	}
 
-	public void addTrip(Trip trip) {
+	protected String getName() {
+		return name;
+	}
+
+	protected void addTrip(Trip trip) {
 		trips.add(trip);
 	}
 
-	public ArrayList<Trip> getTrips() {
+	protected ArrayList<Trip> getTrips() {
 		return trips;
 	}
 
-	public int getTotalDistanceDriven() {
+	protected int getTotalDistanceDriven() {
 		for (Trip trip : trips) {
 			int distance = (int) Math.round(trip.getDistance());
 			totalDistanceDriven += distance;
@@ -31,7 +35,7 @@ public class Driver {
 		return totalDistanceDriven;
 	}
 
-	public int getAverageSpeed() throws ParseException {
+	protected int getAverageSpeed() throws ParseException {
 		ArrayList<Double> speeds = new ArrayList<>();
 		for (Trip trip : trips) {
 			speeds.add(trip.getSpeed());
@@ -44,7 +48,4 @@ public class Driver {
 		return averageSpeed;
 	}
 
-	public String getName() {
-		return name;
-	}
 }
