@@ -12,10 +12,12 @@ public class ReportGenerator {
 		parser.parseFile(file);
 		ArrayList<Driver> driverData = parser.getDriverData();
 		for (Driver driver : driverData) {
-			String output = driver.getName() + ": " + driver.getTotalDistanceDriven() + " miles @ "
-					+ driver.getAverageSpeed() + " mph";
-			System.out.println(output.trim());
+			if (driver.getTrips().size() != 0) {
+				System.out.println(driver.getName() + ": " + driver.getTotalDistanceDriven() + " miles @ "
+						+ driver.getAverageSpeed() + " mph");
+			} else {
+				System.out.println(driver.getName() + ": " + driver.getTotalDistanceDriven() + " miles");
+			}
 		}
 	}
-
 }

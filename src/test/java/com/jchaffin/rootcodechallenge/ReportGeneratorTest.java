@@ -25,14 +25,14 @@ public class ReportGeneratorTest {
 	ReportGenerator testGenerator;
 
 	@Before
-	public void setUpStreams() {
-		System.setOut(new PrintStream(outContent));
-//		System.setErr(new PrintStream(errContent));
+	public void setUp() {
+		testGenerator = new ReportGenerator();
 	}
 
 	@Before
-	public void setUp() {
-		testGenerator = new ReportGenerator();
+	public void setUpStreams() {
+		System.setOut(new PrintStream(outContent));
+//		System.setErr(new PrintStream(errContent));
 	}
 
 	@After
@@ -48,15 +48,15 @@ public class ReportGeneratorTest {
 	public void generateReportPrintsCorrectOutputForFileWithOneDriverAndOneTrip() throws IOException, ParseException {
 		File testFile = folder.newFile("test.txt");
 		PrintWriter writer = new PrintWriter(testFile);
-		writer.println("Driver Bob");
-		writer.println("Trip Bob 07:15 08:15 30");
+		writer.println("Driver Jack");
+		writer.println("Trip Jack 07:15 08:15 30");
 		writer.close();
 		testGenerator.generateReport(testFile);
-		assertEquals("Bob: 30 miles @ 30 mph", outContent.toString().trim());
+		assertEquals("Jack: 30 miles @ 30 mph", outContent.toString().trim());
 	}
 
 	@Test
-	public void generateReportPrintsCorrectOutputForFileWithTwoDriversTrips() throws IOException, ParseException {
+	public void generateReportPrintsCorrectOutputForFileWithTwoDriversAndTrips() throws IOException, ParseException {
 		File testFile = folder.newFile("test.txt");
 		PrintWriter writer = new PrintWriter(testFile);
 		writer.println("Driver Bob");
@@ -66,6 +66,22 @@ public class ReportGeneratorTest {
 		writer.close();
 		testGenerator.generateReport(testFile);
 		assertEquals("Bob: 30 miles @ 30 mph\r\n" + "Bill: 60 miles @ 60 mph", outContent.toString().trim());
+	}
+
+	@Test
+	public void generateReportPrintsCorrectOutputForFileWithThreeDriversAndTwoTrips()
+			throws IOException, ParseException {
+		File testFile = folder.newFile("test.txt");
+		PrintWriter writer = new PrintWriter(testFile);
+		writer.println("Driver Bob");
+		writer.println("Trip Bob 07:15 08:15 30");
+		writer.println("Driver Bill");
+		writer.println("Trip Bill 07:15 08:15 60");
+		writer.println("Driver Steve");
+		writer.close();
+		testGenerator.generateReport(testFile);
+		assertEquals("Bob: 30 miles @ 30 mph\r\n" + "Bill: 60 miles @ 60 mph\r\n" + "Steve: 0 miles",
+				outContent.toString().trim());
 	}
 
 }
