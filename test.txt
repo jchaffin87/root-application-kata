@@ -1,6 +1,9 @@
 Driver Dan
 Driver Alex
-Driver Bob
 Trip Dan 07:15 07:45 17
+Driver Bob
 Trip Dan 06:12 06:32 21
+Driver Steve
+Trip Steve 04:20 05:20 15
+Trip Steve 05:01 05:31 40
 Trip Alex 12:01 13:16 42
